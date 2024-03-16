@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/3D-HUB/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Mouse/Souris Level 1.unity
+    guid: 4ede3990d0e5b4ee784f30d68cebc214
+  - enabled: 1
     path: Assets/Scenes/Area-51/Terminal.unity
     guid: ca383f68c3ac0444e8c0c7b99c88bd49
   - enabled: 1

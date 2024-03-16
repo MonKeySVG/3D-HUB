@@ -11,7 +11,7 @@ public class HealthDisplayManager : MonoBehaviour
 
     List<HealthHeart> hearts = new List<HealthHeart>();
 
-    public string[] scenesToCheck = new string[] { "Terminal", "SampleScene", "NomScene3" };
+    public string[] scenesToCheck = new string[] { "Terminal", "SampleScene", "Level 1 Souris" };
 
     public void ClearHearths() {
         foreach(Transform t in transform) {
