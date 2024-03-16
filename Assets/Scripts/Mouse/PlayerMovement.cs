@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 	#region Variables
 	//Components
     public Rigidbody2D RB { get; private set; }
+	public Animator animator;
 
 	//Variables control the various actions the player can perform at any time.
 	//These are fields which can are public allowing for other sctipts to read them
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 	}
 
 	private void Start()
@@ -75,6 +77,13 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
+		animator.SetFloat("Speed", Mathf.Abs(RB.velocity.x));
+		Debug.Log("horizontal velocity : " + RB.velocity.x);
+		animator.SetBool("isJumping", IsJumping);
+
+
+
+
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
 		LastOnWallTime -= Time.deltaTime;
@@ -94,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
         {
 			OnJumpInput();
+			
         }
 
 		if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
