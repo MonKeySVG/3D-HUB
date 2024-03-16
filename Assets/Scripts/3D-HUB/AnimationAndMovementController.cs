@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -10,6 +11,8 @@ public class AnimationAndMovementController : MonoBehaviour
     CharacterController characterController;
     Animator animator;
 
+    public Transform cam;
+
     int isWalkingHash;
     int isRunningHash;
 
@@ -17,10 +20,15 @@ public class AnimationAndMovementController : MonoBehaviour
     Vector3 currentMovement;
     Vector3 currentRunMovement;
 
+    Vector3 moveDir;
+
+    public float walkSpeed = 3.0f;
     float runMultiplier = 3.0f;
     bool isMovementPressed;
     bool isRunPressed;
-    float rotationFactorPerFrame = 30.0f;
+    public float turnSmoothTime = 0.1f;
+
+    float smoothTurnVelocity;
 
     void Awake() {
         playerInput = new PlayerInput();
@@ -45,13 +53,16 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void onMovementInput (InputAction.CallbackContext context) {
         currentMovementInput = context.ReadValue<Vector2>();
-            currentMovement.x = currentMovementInput.x;
-            currentMovement.z = currentMovementInput.y;
+        currentMovement.x = currentMovementInput.x;
+        currentMovement.z = currentMovementInput.y;
 
-            currentRunMovement.x = currentMovementInput.x * runMultiplier;
-            currentRunMovement.z = currentMovementInput.y * runMultiplier;
+        moveDir.x = currentMovementInput.x;
+        moveDir.z = currentMovementInput.y;
 
-            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
+        currentRunMovement.x = currentMovementInput.x * runMultiplier;
+        currentRunMovement.z = currentMovementInput.y * runMultiplier;
+
+        isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
     }
 
     void handleAnimation () {
@@ -77,10 +88,15 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void handleRotation() {
         Vector3 positionToLookAt = new Vector3(currentMovement.x, 0.0f, currentMovement.z);
+        
 
         if (isMovementPressed) {
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
+            float targetAngle = Mathf.Atan2(positionToLookAt.x, positionToLookAt.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothTurnVelocity, turnSmoothTime);
+            // Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         }
     }
 
@@ -95,6 +111,7 @@ public class AnimationAndMovementController : MonoBehaviour
         }
         else
         {
+            Debug.Log("gravity");
             float gravity = -9.8f;
             currentMovement.y += gravity;
             currentRunMovement.y += gravity;
@@ -116,9 +133,9 @@ public class AnimationAndMovementController : MonoBehaviour
         handleAnimation();
 
         if (isRunPressed) {
-            characterController.Move(currentRunMovement * Time.deltaTime);
+            characterController.Move(moveDir * Time.deltaTime * walkSpeed * runMultiplier);
         } else {
-            characterController.Move(currentMovement * Time.deltaTime);
+            characterController.Move(moveDir * Time.deltaTime * walkSpeed);
         }
         
         
