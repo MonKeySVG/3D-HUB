@@ -93,14 +93,27 @@ public class Interpreter : MonoBehaviour
         if (SceneController.instance.originScene == "Level 1") {
             if (args[0] == "help") {
                 ListEntry("help", "return a list of commands");
-                ListEntry("getcode", "Get the secret code");
+                ListEntry("connect [PC ID]", "Connect to a distant computer");
 
                 return response;
             }
 
-            if (args[0] == "getcode") {
-                ListEntry("Code", "1234");
-                return response;
+            if (args[0] == "connect") {
+
+                if (args.Length >= 2) {
+                    if (args[1] == "0000") {
+
+                        response.Add("Successfully connected !");
+                        return response;
+                    } else {
+                        response.Add("Connection failed");
+                        return response;
+                    }
+                } else {
+                    response.Add("Please provide a computer ID");
+                        return response;
+                }
+                
             }
 
 
