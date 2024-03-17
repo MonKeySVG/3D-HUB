@@ -185,6 +185,7 @@ public class CodeMachineManager : MonoBehaviour
             }
         } else if (Input.GetKeyDown(KeyCode.Return)) {
             if (codeToDisplay == CorrectCode) {
+                openUI.ResumeAnCloseUI();
                 actionOnCorrectCode.Invoke();
             } else {
                 Debug.Log("Code faux");
