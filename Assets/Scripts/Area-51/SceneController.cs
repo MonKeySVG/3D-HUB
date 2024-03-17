@@ -52,6 +52,16 @@ public class SceneController : MonoBehaviour
         saveSystemManager.SavePlayer();
 
         StartCoroutine(LoadAsynchronously("Terminal"));
+    }
+
+    public void GoToPCServer() {
+
+
+        originScene = GetCurrentScene();
+
+        saveSystemManager.SavePlayer();
+
+        StartCoroutine(LoadAsynchronously("PC Server"));
 
         
     }
@@ -81,7 +91,7 @@ public class SceneController : MonoBehaviour
 
         bool loadPosition = false;
 
-        if (SceneManager.GetActiveScene().name == "Terminal") {
+        if (SceneManager.GetActiveScene().name == "Terminal" || SceneManager.GetActiveScene().name == "PC Server") {
             loadPosition = true;
         };
 

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum Machines
+{
+    Terminal,
+
+    ServerPC,
+    Other
+}
 public class Interactable : MonoBehaviour
 {
     public bool isInRange;
@@ -10,7 +17,10 @@ public class Interactable : MonoBehaviour
 
     public UnityEvent interactAction;
 
-    public bool isTerminal = false;
+    // public bool isTerminal = false;
+    public Machines machine;
+
+
 
     SceneController sceneController;
 
@@ -30,16 +40,25 @@ public class Interactable : MonoBehaviour
         if (sceneController == null) {
             sceneController = FindAnyObjectByType<SceneController>();
         }
-        if (!isTerminal) {
+
+
+
+
+        if (machine == Machines.Other) {
             if(isInRange && Input.GetKeyDown(interactKey)) {
                 interactAction.Invoke();
             }
-        } else {
+        } else if (machine == Machines.Terminal) {
             if(isInRange && Input.GetKeyDown(interactKey)) {
                 sceneController.originScene = sceneController.GetCurrentScene();
                 sceneController.GoToTerminal();
             }
-        }
+        } else if (machine == Machines.ServerPC) {
+            if(isInRange && Input.GetKeyDown(interactKey)) {
+                sceneController.originScene = sceneController.GetCurrentScene();
+                sceneController.GoToPCServer();
+            }
+        } 
         
     }
 

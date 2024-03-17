@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Area-51/Terminal.unity
     guid: ca383f68c3ac0444e8c0c7b99c88bd49
   - enabled: 1
+    path: Assets/Scenes/Area-51/PC Server.unity
+    guid: 35e9725b9cbe24e68968c5dfd889f460
+  - enabled: 1
     path: Assets/Scenes/Area-51/Level 0.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
