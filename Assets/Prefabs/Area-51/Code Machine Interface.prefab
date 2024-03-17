@@ -61,7 +61,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1777780415
+  m_SortingLayerID: -1027713521
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1492995236200886181
@@ -151,10 +151,10 @@ MonoBehaviour:
   digit2: {fileID: 9068177334099027263}
   digit3: {fileID: 5809381098861221202}
   digit4: {fileID: 5034435603191175492}
-  bar1: {fileID: 0}
-  bar2: {fileID: 0}
-  bar3: {fileID: 0}
-  bar4: {fileID: 0}
+  bar1: {fileID: 6899802893302456368}
+  bar2: {fileID: 6947294286187036301}
+  bar3: {fileID: 8038914851020256275}
+  bar4: {fileID: 6242739903338938835}
   CorrectCode: 5678
 --- !u!1 &439554415492874804
 GameObject:

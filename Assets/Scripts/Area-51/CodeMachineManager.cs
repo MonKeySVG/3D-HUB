@@ -121,6 +121,7 @@ public class CodeMachineManager : MonoBehaviour
 
     private void Update()
     {
+        updateBars();
         // Debug.Log(codeToDisplay);
         // Exemple de code pour la touche "Escape" pour reprendre le jeu
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -191,32 +192,53 @@ public class CodeMachineManager : MonoBehaviour
                 Debug.Log("Code faux");
             }
         }
-
-
-
-        
     }
 
     public void updateBars() {
         // Mettre a jour l'affichache dynamique des barres pour que la barre actuellement active soit surélevée
-
-        // int basePosition = -133;
-        // Vector3 newPosition = bar1.transform.position;
-        // newPosition.y = -133;
-
-        
+        int basePosition = -133;
+        int offset = 20;
+        Color baseColor = Color.white;
+        Color highlightColor = Color.yellow;
 
 
+        bar1.rectTransform.anchoredPosition = new Vector2(bar1.rectTransform.anchoredPosition.x, basePosition);
+        bar2.rectTransform.anchoredPosition = new Vector2(bar2.rectTransform.anchoredPosition.x, basePosition);
+        bar3.rectTransform.anchoredPosition = new Vector2(bar3.rectTransform.anchoredPosition.x, basePosition);
+        bar4.rectTransform.anchoredPosition = new Vector2(bar4.rectTransform.anchoredPosition.x, basePosition);
 
+        bar1.color = baseColor;
+        bar2.color = baseColor;
+        bar3.color = baseColor;
+        bar4.color = baseColor;
 
+        float targetY = basePosition + offset;
 
+        if (codeToDisplay.Length == 0) {
+            bar1.rectTransform.anchoredPosition = new Vector2(bar1.rectTransform.anchoredPosition.x, basePosition + offset);
+            bar1.color = highlightColor;
+            return;
+        } 
 
-        // if (codeToDisplay.Length == 0) {
-        //     newPosition = bar1.transform.position;
-        //     newPosition.y += 50;
-        //     bar1.transform.position = newPosition;
-        //     return;
-        // }
+        if (codeToDisplay.Length == 1) {
+            bar2.rectTransform.anchoredPosition = new Vector2(bar1.rectTransform.anchoredPosition.x, basePosition + offset);
+            bar2.color = highlightColor;
+            return;
+        }
+
+        if (codeToDisplay.Length == 2) {
+            bar3.rectTransform.anchoredPosition = new Vector2(bar1.rectTransform.anchoredPosition.x, basePosition + offset);
+            bar3.color = highlightColor;
+
+            return;
+        }
+
+        if (codeToDisplay.Length == 3) {
+            bar4.rectTransform.anchoredPosition = new Vector2(bar1.rectTransform.anchoredPosition.x, basePosition + offset);
+            bar4.color = highlightColor;
+
+            return;
+        }
     }
 
 }
