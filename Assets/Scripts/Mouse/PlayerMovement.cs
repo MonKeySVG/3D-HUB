@@ -141,8 +141,9 @@ public class PlayerMovement : MonoBehaviour
 		{
 			IsJumping = false;
 
-			if(!IsWallJumping)
+			if(!IsWallJumping) {
 				_isJumpFalling = true;
+			}
 		}
 
 		if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)

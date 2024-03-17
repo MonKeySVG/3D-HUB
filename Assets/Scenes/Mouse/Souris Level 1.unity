@@ -99717,7 +99717,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.17
+  m_EdgeRadius: 0
   m_ColliderPaths:
   - m_Collider: {fileID: 630620929}
     m_ColliderPaths:
@@ -100070,7 +100070,7 @@ Transform:
   m_GameObject: {fileID: 653882101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.326, y: -0.05, z: 0}
+  m_LocalPosition: {x: -0.326, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100275,10 +100275,10 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 172c39a085be846f19bcfedb29f03f53, type: 2}
   animator: {fileID: 0}
   _groundCheckPoint: {fileID: 1992261608}
-  _groundCheckSize: {x: 0.25, y: 0.09}
+  _groundCheckSize: {x: 0.37, y: 0.06}
   _frontWallCheckPoint: {fileID: 1643320558}
   _backWallCheckPoint: {fileID: 653882102}
-  _wallCheckSize: {x: 0.1, y: 0.76}
+  _wallCheckSize: {x: 0.07, y: 0.52}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -100770,7 +100770,7 @@ Transform:
   m_GameObject: {fileID: 1643320557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.276, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0.276, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
