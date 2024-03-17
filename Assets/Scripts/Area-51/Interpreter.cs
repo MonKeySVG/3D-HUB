@@ -36,12 +36,8 @@ public class Interpreter : MonoBehaviour
         if (SceneController.instance.originScene == "Level 0") {
             if (args[0] == "help") {
                 ListEntry("help", "return a list of commands");
-                ListEntry("getcode", "Get the secret code");
-                return response;
-            }
-
-            if (args[0] == "getcode") {
-                ListEntry("Code", "5678");
+                ListEntry("ls", "Get the list of all the files");
+                ListEntry("dl", "Download a file");
                 return response;
             }
 
@@ -49,14 +45,21 @@ public class Interpreter : MonoBehaviour
 
 
                 if (args.Length >= 2) {
-                    if (args[1] == "challenge1") {
-                        string url = "https://perso.esiee.fr/~belghitr/Cybersecurity-Game/Challenges/Challenge1/Challenge1.zip";
+                    if (args[1] == "note.txt") {
+                        string url = "https://perso.esiee.fr/~belghitr/Cybersecurity-Game/Challenges/Challenge1/note.txt";
                         DownloadManager DownloadManager = gameObject.GetComponent<DownloadManager>();
                         DownloadManager.DownloadURLfrom(url);
 
                         response.Add("Opération réussie");
                         return response;
-                    } else {
+                    }  else if (args[1] == "confidential.zip") {
+                        string url = "https://perso.esiee.fr/~belghitr/Cybersecurity-Game/Challenges/Challenge1/confidential.zip";
+                        DownloadManager DownloadManager = gameObject.GetComponent<DownloadManager>();
+                        DownloadManager.DownloadURLfrom(url);
+
+                        response.Add("Opération réussie");
+                        return response;
+                    }else {
                         response.Add("Le fichier spécifié n'éxiste pas");
                         return response;
 
@@ -70,21 +73,8 @@ public class Interpreter : MonoBehaviour
             }
 
             if (args[0] == "ls") {
-                response.Add("    /Systeme");
-                response.Add("        - Configuration_Systeme.txt");
-                response.Add("        - Protocoles_Securite/");
-                response.Add("            - Protocole_A.txt");
-                response.Add("            - Protocole_B.txt");
-                response.Add("    /Utilisateurs");
-                response.Add("        - Liste_Utilisateurs.txt");
-                response.Add("        - Autorisations/");
-                response.Add("            - Autorisations_Generales.txt");
-                response.Add("            - Autorisations_Specifiques/");
-                response.Add("                - Groupe_Alpha.txt");
-                response.Add("                - Groupe_Bravo.txt");
-                response.Add("    /Support_Technique");
-                response.Add("        - Contact_Administration.txt");
-                response.Add("        - Procedures_Assistance.txt");
+                response.Add("      note.txt");
+                response.Add("      confidential.zip");
 
                 return response;
             }
