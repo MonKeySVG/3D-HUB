@@ -7,7 +7,8 @@ public enum LaserMode
 {
     CompleteCircle,
     SemiCircle,
-    CustomAngle
+    CustomAngle,
+    StaticAngle
 }
 
 public class LaserController : MonoBehaviour
@@ -57,6 +58,8 @@ public class LaserController : MonoBehaviour
                 SemiCircle();
             } else if (laserMode == LaserMode.CustomAngle) {
                 CustomAngle();
+            } else if (laserMode == LaserMode.StaticAngle) {
+                StaticAngle();
             }
 
             Vector2 laserEndPosition = new Vector2(x, y) + (Vector2)firePoint.position;       
@@ -164,6 +167,11 @@ public class LaserController : MonoBehaviour
                 goingForward = true; // Revenir à la direction initiale
             }
         }
+    }
+
+    public void StaticAngle() {
+        float customRadiantAngle = customAngle / (180 / Mathf.PI);
+        angle = customRadiantAngle;
     }
 
 }
