@@ -9,6 +9,8 @@ public class HealthDisplayManager : MonoBehaviour
     public GameObject heartPrefab;
     public Health playerHealth;
 
+    public Canvas canvas;
+
     List<HealthHeart> hearts = new List<HealthHeart>();
 
     public string[] scenesToCheck = new string[] { "Terminal", "SampleScene", "Level 1 Souris" };
@@ -60,6 +62,11 @@ public class HealthDisplayManager : MonoBehaviour
         if (!sceneMatchFound)
         {
             playerHealth = FindAnyObjectByType<PlayerController>().GetComponent<Health>();
+
+            canvas = GetComponentInParent<Canvas>();
+
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = Camera.main;
         }
         
     }
@@ -89,6 +96,11 @@ public class HealthDisplayManager : MonoBehaviour
             if (playerHealth == null) {
 
                 playerHealth = FindAnyObjectByType<PlayerController>().GetComponent<Health>();
+
+                canvas = GetComponentInParent<Canvas>();
+
+                canvas.renderMode = RenderMode.ScreenSpaceCamera;
+                canvas.worldCamera = Camera.main;
 
             }
 
