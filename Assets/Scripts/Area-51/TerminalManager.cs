@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class TerminalManager : MonoBehaviour
     Interpreter interpreter;
 
     bool isLeavingScene = false;
+
+    public Color connectedColor = new Color(0.5f, 0.8f, 0.2f);
 
     private void Start() {
 
@@ -45,7 +48,12 @@ public class TerminalManager : MonoBehaviour
 
     private void OnGUI() {
 
+        if (interpreter.isConnected) {
+            userInputLine.GetComponentInChildren<TextMeshProUGUI>().color = connectedColor;
+        } else {
+            userInputLine.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
 
+        }
         
         if (!Input.GetKeyDown(KeyCode.Escape)) {
             terminalInput.ActivateInputField();

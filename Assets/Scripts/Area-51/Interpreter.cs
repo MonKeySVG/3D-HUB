@@ -20,6 +20,8 @@ public class Interpreter : MonoBehaviour
 
     List<String> response = new List<string>();
 
+    public bool isConnected = false;
+
 
 
     
@@ -91,44 +93,79 @@ public class Interpreter : MonoBehaviour
         }
 
         if (SceneController.instance.originScene == "Level 1") {
-            if (args[0] == "help") {
-                ListEntry("help", "return a list of commands");
-                ListEntry("connect [PC ID]", "Connect to a distant computer");
 
-                return response;
-            }
+            if (!isConnected) {
+                if (args[0] == "help") {
+                    ListEntry("help", "return a list of commands");
+                    ListEntry("connect [PC ID]", "Connect to a distant computer");
 
-            if (args[0] == "connect") {
+                    return response;
+                }
 
-                if (args.Length >= 2) {
-                    if (args[1] == "0000") {
+                if (args[0] == "connect") {
 
-                        response.Add("Successfully connected !");
-                        return response;
+                    if (args.Length >= 2) {
+                        if (args[1] == "0000") {
+                            isConnected = true;
+                            response.Add("Successfully connected !");
+                            return response;
+                        } else {
+                            response.Add("Connection failed");
+                            return response;
+                        }
                     } else {
-                        response.Add("Connection failed");
-                        return response;
+                        response.Add("Please provide a computer ID");
+                            return response;
                     }
-                } else {
-                    response.Add("Please provide a computer ID");
-                        return response;
+                    
+                }
+
+
+
+                else {
+                    UnknownCommand();
+
+                    return response;
+                }
+
+            } 
+            
+            
+            else {
+                if (args[0] == "help") {
+                    ListEntry("help", "return a list of commands");
+                    ListEntry("disconnect", "Disconnect from the distant computer");
+
+
+                    return response;
+                } 
+
+                if (args[0] == "disconnect") {
+                    isConnected = false;
+                    response.Add("Successfully disconnected");
+                    return response;
+                } 
+
+                if (args[0] == "ls") {
+                    response.Add("      note.txt");
+                    response.Add("      confidential.zip");
+
+                    return response;
+                }
+
+                else {
+                    UnknownCommand();
+
+                    return response;
                 }
                 
             }
-
-
-
-            else {
-                UnknownCommand();
-
-                return response;
-            }
+            
 
         
         }
 
         else {
-            UnknownCommand();
 
             return response;
         }
