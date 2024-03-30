@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GlowObjectsMat
-  m_Shader: {fileID: -6465566751694194690, guid: 0cce74b772a6849ce87b70775f914bcc, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0cce74b772a6849ce87b70775f914bcc,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -61,5 +62,5 @@ Material:
     - _FlashAmount: 0
     m_Colors:
     - _FlashColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 4, g: 4, b: 4, a: 0}
+    - _GlowColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 0}
   m_BuildTextureStacks: []
