@@ -47,11 +47,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Walls
-    uniqueID: 4081570909
-    locked: 0
   - name: Player
     uniqueID: 3617784417
+    locked: 0
+  - name: Desk
+    uniqueID: 520829223
+    locked: 0
+  - name: Walls
+    uniqueID: 4081570909
     locked: 0
   - name: UI
     uniqueID: 3267253775
