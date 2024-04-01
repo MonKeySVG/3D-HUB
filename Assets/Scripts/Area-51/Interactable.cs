@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public enum Machines
 {
     Terminal,
-
     ServerPC,
+    Automatic,
     Other
 }
 public class Interactable : MonoBehaviour
@@ -58,7 +58,11 @@ public class Interactable : MonoBehaviour
                 sceneController.originScene = sceneController.GetCurrentScene();
                 sceneController.GoToPCServer();
             }
-        } 
+        } else if (machine == Machines.Automatic) {
+            if(isInRange) {
+                interactAction.Invoke();
+            }
+        }
         
     }
 

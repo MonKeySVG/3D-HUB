@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
+    public bool goForwards = true;
     public float distanceToMove = 9f;
     public float duration = 1f;
     public bool isDoorOpened = false;
@@ -26,25 +27,38 @@ public class Door : MonoBehaviour
 
     public IEnumerator OpenDoorCoroutine()
     {
-        isDoorOpened = true;
-        // Calcule la position cible
-        Vector3 targetPosition = transform.position + Vector3.left * distanceToMove;
 
-        // Calcule la vitesse de déplacement en fonction de la durée
-        float speed = distanceToMove / duration;
+        if (!isDoorOpened) {
+            isDoorOpened = true;
 
-        // Déplace l'objet vers la position cible progressivement
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            Vector3 targetPosition;
+            // Calcule la position cible
+            if (goForwards) {
+                targetPosition = transform.position + Vector3.left * distanceToMove;
+
+            } else {
+                targetPosition = transform.position + Vector3.right * distanceToMove;
+
+            }
+
+            // Calcule la vitesse de déplacement en fonction de la durée
+            float speed = distanceToMove / duration;
+
+            // Déplace l'objet vers la position cible progressivement
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Assurez-vous que la porte atteint exactement la position cible
+            transform.position = targetPosition;
+
         }
 
-        // Assurez-vous que la porte atteint exactement la position cible
-        transform.position = targetPosition;
-
+        
 
     }
 }

@@ -443,10 +443,11 @@ MonoBehaviour:
   heartPrefab: {fileID: 9052476583292931268, guid: 25a456194fb8e48728528e2702d173e4,
     type: 3}
   playerHealth: {fileID: 0}
+  canvas: {fileID: 0}
   scenesToCheck:
   - Terminal
   - SampleSene
-  - NomScene3
+  - PC Server
 --- !u!1 &8459339765411088096
 GameObject:
   m_ObjectHideFlags: 0
